@@ -2,21 +2,21 @@ package C189;
 /**
  * Created by mian on 4/22/2018.
  */
-public class node {
+public class node{
     /* MA This class will represent one node in the hash table */
     //MA declare string variables for name, phone, and email
     private String name;
     private String phone;
     private String email;
     //MA declare variable for the node to allow circular reference
-    private Node nextNode;
+    private node nextNode;
 
     //MA Constructors
-    public Node(String name, String phone, String email){
+    public node(String name, String phone, String email){
         this(name, phone, email, null);
     }
     //MA Create the next nodes
-    public Node(String name, String, phone, String email, Node nextNode){
+    public node(String name, String phone, String email, node nextNode){
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -32,14 +32,14 @@ public class node {
     }
 
     public String getPhone(){
-        return this.phone
+        return this.phone;
     }
 
-    public Node getNextNode(){
+    public  node getNextNode(){
         return this.nextNode;
     }
 
-    public void setNextNode(Node nextNode){
+    public void setNextNode(node nextNode){
         this.nextNode = nextNode;
     }
 

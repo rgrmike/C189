@@ -6,8 +6,8 @@ package C189;
 public class main {
     /* This class will be the main method */
     public static void main(String[] args){
-        System.out.println("Testing Hask Table:");
-        hashTable testHash = new hashTable();
+        System.out.println("Testing Hash Table:");
+        C189.hashtable testHash = new C189.hashtable();
         testHash.add("Bob", "Smith", "bsmith@somewhere.com", "555-235-1111");
         testHash.add("Jane", "Williams", "jw@something.com", "555-235-1112");
         testHash.add("Mohammed", "al-Salam", "mas@someplace.com", "555-235-1113");
@@ -18,8 +18,8 @@ public class main {
         testHash.add("Jill", "Jones", "jillj@hill.com", "555-235-1118");
         testHash.add("John", "Doe", "jdoe@somedomain.com", "555-235-1119");
         testHash.add("Jane", "Doe", "jdoe@somedomain.com", "555-235-1120");
-        testHash.add("Pat", "Jones");
-        testHash.add("Billy", "Kidd");
+        testHash.find("Pat", "Jones");
+        testHash.find("Billy", "Kidd");
         testHash.delete("John", "Doe");
         testHash.add("Test", "Case", "Test_Case@testcase.com", "555-235-1121");
         testHash.add("Nadezhda", "Kanachekhovskaya", "dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru", "555-235-1122");
@@ -34,9 +34,8 @@ public class main {
         testHash.find("Jill", "Jones");
         testHash.find("John", "Doe");
         System.out.println();
-        System.out.println(Hash test complete);
+        System.out.println("Hash test complete");
         System.out.println();
-        testHash.
 
     }
 
