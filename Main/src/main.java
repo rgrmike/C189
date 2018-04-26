@@ -1,5 +1,3 @@
-package C189;
-
 /**
  * Created by Mike Anderson on 4/22/2018.
  */
@@ -7,7 +5,7 @@ public class main {
     /* This class will be the main method */
     public static void main(String[] args){
         System.out.println("Testing Hash Table:");
-        C189.hashtable testHash = new C189.hashtable();
+        hashtable testHash = new hashtable();
         testHash.add("Bob", "Smith", "bsmith@somewhere.com", "555-235-1111");
         testHash.add("Jane", "Williams", "jw@something.com", "555-235-1112");
         testHash.add("Mohammed", "al-Salam", "mas@someplace.com", "555-235-1113");
