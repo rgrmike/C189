@@ -1,3 +1,4 @@
+package Main.src;
 /**
  * Created by Mike Anderson on 4/22/2018.
  */
@@ -34,6 +35,35 @@ public class main {
         System.out.println();
         System.out.println("Hash test complete");
         System.out.println();
+        System.out.println("Testing Tree:");
+        binarytree testtree = new binarytree();
+        testtree.add("Bob", "Smith", "bsmith@somewhere.com", "555-235-1111");
+        testtree.add("Jane", "Williams", "jw@something.com", "555-235-1112");
+        testtree.add("Mohammed", "al-Salam", "mas@someplace.com", "555-235-1113");
+        testtree.add("Pat", "Jones", "pjones@homesweethome.com", "555-235-1114");
+        testtree.add("Billy", "Kidd", "billy_the_kid@nowhere.com", "555-235-1115");
+        testtree.add("H.", "Houdini", "houdini@noplace.com", "555-235-1116");
+        testtree.add("Jack", "Jones", "jjones@hill.com", "555-235-1117");
+        testtree.add("Jill", "Jones", "jillj@hill.com", "555-235-1118");
+        testtree.add("John", "Doe", "jdoe@somedomain.com", "555-235-1119");
+        testtree.add("Jane", "Doe", "jdoe@somedomain.com", "555-235-1120");
+        testtree.find("Pat", "Jones");
+        testtree.find("Billy", "Kidd");
+        testtree.delete("John", "Doe");
+        testtree.add("Test", "Case", "Test_Case@testcase.com", "555-235-1121");
+        testtree.add("Nadezhda", "Kanachekhovskaya", "dr.nadezhda.kanacheckovskaya@somehospital.moscow.ci.ru", "555-235-1122");
+        testtree.add("Jo", "Wu", "wu@h.com", "555-235-1123");
+        testtree.add("Millard", "Fillmore", "millard@theactualwhitehouse.us", "555-235-1124");
+        testtree.add("Bob", "vanDyke", "vandyke@nodomain.com", "555-235-1125");
+        testtree.add("Upside", "Down", "upsidedown@rightsideup.com", "555-235-1126");
+        testtree.find("Jack", "Jones");
+        testtree.find("Nadezhda", "Kanachekhovskaya");
+        testtree.delete("Jill", "Jones");
+        testtree.delete("John", "Doe");
+        testtree.find("Jill", "Jones");
+        testtree.find("John", "Doe");
+        System.out.println();
+        System.out.println("Tree test complete");
 
     }
 

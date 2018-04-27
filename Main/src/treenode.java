@@ -1,3 +1,4 @@
+package Main.src;
 /**
  * Created by mian on 4/25/2018.
  */
@@ -8,8 +9,10 @@ public class treenode {
     private String phone;
     private String email;
     //MA declare variable for the tree
+    private treenode parent;
     private treenode leftNode;
     private treenode rightNode;
+    private boolean isRightChild;
 
     //MA Constructors
     public treenode(String name, String phone, String email){
@@ -44,6 +47,14 @@ public class treenode {
         return this.rightNode;
     }
 
+    public treenode getparent(){
+        return this.parent;
+    }
+
+    public boolean isRightChild() {
+        return isRightChild;
+    }
+
     public void setLeftNode(treenode leftNode){
         this.leftNode = leftNode;
     }
@@ -51,5 +62,10 @@ public class treenode {
     public void setRightNode(treenode rightNode){
         this.rightNode = rightNode;
     }
+
+    public void setParent(treenode parent){this.parent = parent; }
+
+    public void setisRightChild (boolean isRightChild){this.isRightChild = isRightChild; }
+
 
 }
