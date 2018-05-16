@@ -39,7 +39,7 @@ public class treenode {
         return this.phone;
     }
 
-    public  treenode getleftNode(){
+    public  treenode getLeftNode(){
         return this.leftNode;
     }
 
