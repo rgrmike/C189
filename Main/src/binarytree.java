@@ -58,10 +58,10 @@ public class binarytree {
 
     }
 
-    public void find(String fName, String lName){
+    public treenode find(String fName, String lName){
         System.out.println("Find Tree Value: " + fName + " " + lName);
         String name = nameCat(fName, lName);
-        rFind(root, name);
+        return rFind(root, name);
     }
 
     public treenode rFind(treenode rFindroot, String rname){
@@ -85,6 +85,7 @@ public class binarytree {
             //Else
             else {
                 //Call rFind with root’s left child and name
+                //Print statement to aid in debug - lets us know how the tree is being searched
                 System.out.println("calling rFind with get left node: " + rFindroot.getLeftNode());
                 rFind(rFindroot.getLeftNode(), rname);
             }
@@ -99,48 +100,41 @@ public class binarytree {
             }
             else {
                 //Call rFind with root’s left child and name
+                //Print statement to aid in debug - lets us know how the tree is being searched
                 System.out.println("calling rFind with get right node: " + rFindroot.getRightNode());
                 rFind(rFindroot.getRightNode(), rname);
             }
         }
+        //this is here to keep the IntelliJ IDE happy - it was showing a syntax error for no return
         return null;
     }
 
-    public void delete(String fName, String lName){
+    public treenode delete(String fName, String lName){
         System.out.println("Delete Name from Tree: " + fName + " " + lName);
-        String name = nameCat(fName, lName);
-        this.root = delete(name, this.root);
-    }
-
-    public treenode delete(String name, treenode currenttreenode){
-        if(currenttreenode == null)
-            return currenttreenode;
-        int compareRes = currenttreenode.getName().compareTo(name);
-
-        if(compareRes < 0)
-            currenttreenode.setLeftNode(delete(name, currenttreenode.getLeftNode()));
-        else if (compareRes > 0)
-            currenttreenode.setRightNode(delete(name, currenttreenode.getRightNode()));
-        else {
-            if (currenttreenode.getLeftNode() == null)
-                return currenttreenode.getRightNode();
-            else if (currenttreenode.getRightNode() == null)
-                return currenttreenode.getLeftNode();
-            else {
-                String littleName = currenttreenode.getName();
-
-                while (currenttreenode.getLeftNode() != null){
-                    littleName = currenttreenode.getLeftNode().getName();
-                    currenttreenode = currenttreenode.getLeftNode();
-                }
-                currenttreenode.setRightNode(delete(littleName, currenttreenode.getRightNode()));
-            }
+        treenode delNode = find(fName, lName);
+        treenode parentNode = delNode.getparent();
+        if(delnode == null){
+            //nothing found to delete returning null
+            System.out.println("Name not found - nothing to delete.");
+            return null;
         }
-        return currenttreenode;
+        else if(delNode.getLeftNode() == null && delNode.getRightNode() == null){
+            //The node has no children
+            //		If isRightChild is true
+                if(delNode.getisRightChild() == true){
+                    //			Set node’s parent’s right child to null
+                    parentNode.setRightNode(null);
+                }
+                else {
+                    //Set node’s parent’s left child to null
+                    parentNode.setLeftNode(null);
+                }
+        }
+
     }
-
-
+    
 
     public String nameCat(String fName, String lName){
+        //nameCat simply combines first and last name into a single string value
         return fName + lName;}
 }

@@ -51,7 +51,7 @@ public class treenode {
         return this.parent;
     }
 
-    public boolean isRightChild() {
+    public boolean getisRightChild() {
         return isRightChild;
     }
 
