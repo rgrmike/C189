@@ -13,45 +13,45 @@ public class binarytree {
         //if the root is empty put the value there
         if(root == null){
             root = newTreeNode;
-            System.out.println("Adding data to root");
+            System.out.println("Adding data to root" + "Root name = " + root.getName());
         }
         else {
             rAdd(root, newTreeNode);
         }
     }
 
-    public void rAdd(treenode root, treenode newTreeNode){
+    public void rAdd(treenode addRoot, treenode newTreeNode){
             /* compare the newTreeNode name value to the root value.
             If key is greater than root it will be positive - if it is less then it will be negative */
-            if(newTreeNode.getName().compareTo(root.getName()) < 0){
-                if(root.getLeftNode() == null){
+            if(newTreeNode.getName().compareTo(addRoot.getName()) < 0){
+                if(addRoot.getLeftNode() == null){
                     //Set root left child to the new node
-                    root.setLeftNode(newTreeNode);
+                    addRoot.setLeftNode(newTreeNode);
                     //Set new node's parent to root
-                    newTreeNode.setParent(root);
+                    newTreeNode.setParent(addRoot);
                     //set isRightChild to false
                     newTreeNode.setisRightChild(false);
                     System.out.println("Added left node with radd for: " + newTreeNode.getName());
                 }
                 else{
                     //Call rAdd with parameters root.getLeftChild and key
-                    System.out.println("called rAdd with " + root.getLeftNode());
-                    rAdd(root.getLeftNode(), newTreeNode);
+                    System.out.println("called rAdd with left node: " + addRoot.getLeftNode());
+                    rAdd(addRoot.getLeftNode(), newTreeNode);
                 }
             }
             else{
-                if(root.getRightNode() == null) {
+                if(addRoot.getRightNode() == null) {
                     //Set root’s right child to the new node
-                    root.setRightNode(newTreeNode);
+                    addRoot.setRightNode(newTreeNode);
                     //Set new node’s parent to root
-                    newTreeNode.setParent(root);
+                    newTreeNode.setParent(addRoot);
                     //Set isRightChild to true
                     newTreeNode.setisRightChild(true);
-                    System.out.println("Added left node with radd for: " + newTreeNode.getName());
+                    System.out.println("Added right node with radd for: " + newTreeNode.getName() + " " + newTreeNode.getparent());
                 }
                 else{
-                    System.out.println("called rAdd with " + root.getRightNode());
-                    rAdd(root.getRightNode(), newTreeNode);
+                    System.out.println("called rAdd with right node: " + addRoot.getRightNode());
+                    rAdd(addRoot.getRightNode(), newTreeNode);
                 }
             }
 
@@ -64,42 +64,43 @@ public class binarytree {
         rFind(root, name);
     }
 
-    public treenode rFind(treenode root, String name){
+    public treenode rFind(treenode rFindroot, String rname){
+        String compareRootName = rFindroot.getName();
         //If key ==  root’s name
-        if(name.compareTo(root.getName()) == 0){
+        if(rname.compareTo(compareRootName) == 0){
             //Report found
-            System.out.println("Name: " + name + "found");
+            System.out.println("Name: " + rname + " found");
             //Return key
-            return root;
+            return rFindroot;
         }
         //Else if key < root’s name
-        else if(name.compareTo(root.getName()) < 0){
+        else if(rname.compareTo(compareRootName) < 0){
             //If root’s left child is null
-            if(root.getLeftNode() == null){
+            if(rFindroot.getLeftNode() == null){
                 //Report not found
-                System.out.println("Name: " + name + " not found as left node");
+                System.out.println("Name: " + rname + " not found as left node");
                 //Return null
                 return null;
             }
             //Else
             else {
                 //Call rFind with root’s left child and name
-                System.out.println("calling rFind with: " + root.getLeftNode());
-                rFind(root.getLeftNode(), name);
+                System.out.println("calling rFind with get left node: " + rFindroot.getLeftNode());
+                rFind(rFindroot.getLeftNode(), rname);
             }
         }
         else {
             //If root’s right child is null
-            if(root.getRightNode() == null) {
+            if(rFindroot.getRightNode() == null) {
                 //Report not found
-                System.out.println("Name: " + name + " not found as right node");
+                System.out.println("Name: " + rname + " not found as right node");
                 //Return null
                 return null;
             }
             else {
                 //Call rFind with root’s left child and name
-                System.out.println("calling rFind with: " + root.getLeftNode());
-                rFind(root.getLeftNode(), name);
+                System.out.println("calling rFind with get right node: " + rFindroot.getRightNode());
+                rFind(rFindroot.getRightNode(), rname);
             }
         }
         return null;
