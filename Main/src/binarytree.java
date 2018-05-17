@@ -31,9 +31,11 @@ public class binarytree {
                     newTreeNode.setParent(root);
                     //set isRightChild to false
                     newTreeNode.setisRightChild(false);
+                    System.out.println("Added left node with radd for: " + newTreeNode.getName());
                 }
                 else{
                     //Call rAdd with parameters root.getLeftChild and key
+                    System.out.println("called rAdd with " + root.getLeftNode());
                     rAdd(root.getLeftNode(), newTreeNode);
                 }
             }
@@ -45,8 +47,10 @@ public class binarytree {
                     newTreeNode.setParent(root);
                     //Set isRightChild to true
                     newTreeNode.setisRightChild(true);
+                    System.out.println("Added left node with radd for: " + newTreeNode.getName());
                 }
                 else{
+                    System.out.println("called rAdd with " + root.getRightNode());
                     rAdd(root.getRightNode(), newTreeNode);
                 }
             }
@@ -54,32 +58,51 @@ public class binarytree {
 
     }
 
-    public String[] find(String fName, String lName){
+    public void find(String fName, String lName){
         System.out.println("Find Tree Value: " + fName + " " + lName);
         String name = nameCat(fName, lName);
-        String[] dataArray = new String[2];
+        rFind(root, name);
+    }
 
-        if(root == null) {
-            System.out.println("Data not found in tree");
-            return dataArray;
+    public treenode rFind(treenode root, String name){
+        //If key ==  root’s name
+        if(name.compareTo(root.getName()) == 0){
+            //Report found
+            System.out.println("Name: " + name + "found");
+            //Return key
+            return root;
         }
-        else {
-            treenode currenttreenode = root;
-
-            while (currenttreenode != null){
-                if(currenttreenode.getName().equals(name)){
-                    dataArray[0] = currenttreenode.getEmail();
-                    dataArray[1] = currenttreenode.getPhone();
-                    return dataArray;
-                }
-                else if(currenttreenode.getName().compareTo(name) < 0)
-                    currenttreenode = currenttreenode.getLeftNode();
-                else
-                    currenttreenode = currenttreenode.getRightNode();
+        //Else if key < root’s name
+        else if(name.compareTo(root.getName()) < 0){
+            //If root’s left child is null
+            if(root.getLeftNode() == null){
+                //Report not found
+                System.out.println("Name: " + name + " not found as left node");
+                //Return null
+                return null;
+            }
+            //Else
+            else {
+                //Call rFind with root’s left child and name
+                System.out.println("calling rFind with: " + root.getLeftNode());
+                rFind(root.getLeftNode(), name);
             }
         }
-        System.out.println(fName + " " + lName + " not found.");
-        return dataArray;
+        else {
+            //If root’s right child is null
+            if(root.getRightNode() == null) {
+                //Report not found
+                System.out.println("Name: " + name + " not found as right node");
+                //Return null
+                return null;
+            }
+            else {
+                //Call rFind with root’s left child and name
+                System.out.println("calling rFind with: " + root.getLeftNode());
+                rFind(root.getLeftNode(), name);
+            }
+        }
+        return null;
     }
 
     public void delete(String fName, String lName){

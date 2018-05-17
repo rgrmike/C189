@@ -5,7 +5,7 @@ package Main.src;
 public class main {
     /* This class will be the main method */
     public static void main(String[] args){
-        System.out.println("Testing Hash Table:");
+        /*System.out.println("Testing Hash Table:");
         hashtable testHash = new hashtable();
         testHash.add("Bob", "Smith", "bsmith@somewhere.com", "555-235-1111");
         testHash.add("Jane", "Williams", "jw@something.com", "555-235-1112");
@@ -33,7 +33,7 @@ public class main {
         testHash.find("Jill", "Jones");
         testHash.find("John", "Doe");
         System.out.println();
-        System.out.println("Hash test complete");
+        System.out.println("Hash test complete");*/
         System.out.println();
         System.out.println("Testing Tree:");
         binarytree testtree = new binarytree();
