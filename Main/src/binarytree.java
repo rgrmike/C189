@@ -142,10 +142,22 @@ public class binarytree {
             //Set node’s parent’s left child to node’s left child
             parentNode.setLeftNode(delNode.getLeftNode());
             //Set node’s left child’s parent to node’s parent
+            delNode.getLeftNode().setParent(parentNode);
+        }
+        //check to see if the node has both left and right children
+        else if(delNode.getRightNode() != null && delNode.getLeftNode() != null){
 
         }
+        //this is here to keep the IDE happy - should never hit this
+        return null;
     }
 
+    public treenode util (treenode utilTreenode){
+        //	a. Create a little utility method that takes a TreeNode and returns the leftmost child
+        //It will simply be a while loop that goes down the left child repeatedly until the left child is null.
+        // It returns that last left child.
+        //	ii. This node has the characteristic of being the smallest node of the tree searched
+    }
 
     public String nameCat(String fName, String lName){
         //nameCat simply combines first and last name into a single string value
