@@ -113,7 +113,7 @@ public class binarytree {
         System.out.println("Delete Name from Tree: " + fName + " " + lName);
         treenode delNode = find(fName, lName);
         treenode parentNode = delNode.getparent();
-        if(delnode == null){
+        if(delNode == null){
             //nothing found to delete returning null
             System.out.println("Name not found - nothing to delete.");
             return null;
@@ -130,9 +130,22 @@ public class binarytree {
                     parentNode.setLeftNode(null);
                 }
         }
+        //Check for case two (the node has a right child)
+        else if(delNode.getRightNode() != null && delNode.getLeftNode() == null){
+            //Set node’s parent’s right child to node’s right child
+            parentNode.setRightNode(delNode.getRightNode());
+            //Set node’s right child’s parent to node’s parent
+            delNode.getRightNode().setParent(parentNode);
+        }
+        //Check for case three (the node has a left child)
+        else if(delNode.getLeftNode() != null && delNode.getRightNode() == null){
+            //Set node’s parent’s left child to node’s left child
+            parentNode.setLeftNode(delNode.getLeftNode());
+            //Set node’s left child’s parent to node’s parent
 
+        }
     }
-    
+
 
     public String nameCat(String fName, String lName){
         //nameCat simply combines first and last name into a single string value
