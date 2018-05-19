@@ -13,6 +13,7 @@ public class binarytree {
         //if the root is empty put the value there
         if(root == null){
             root = newTreeNode;
+            //print statement for debug to see when root is created
             System.out.println("Adding data to root" + "Root name = " + root.getName());
         }
         else {
@@ -31,11 +32,13 @@ public class binarytree {
                     newTreeNode.setParent(addRoot);
                     //set isRightChild to false
                     newTreeNode.setisRightChild(false);
-                    System.out.println("Added left node with radd for: " + newTreeNode.getName());
+                    //debug statement to see when tree node is added right
+                    //System.out.println("Added left node with radd for: " + newTreeNode.getName());
                 }
                 else{
                     //Call rAdd with parameters root.getLeftChild and key
-                    System.out.println("called rAdd with left node: " + addRoot.getLeftNode());
+                    //statement for debug of how many times recursive call was made
+                    //System.out.println("called rAdd with left node: " + addRoot.getLeftNode());
                     rAdd(addRoot.getLeftNode(), newTreeNode);
                 }
             }
@@ -47,10 +50,12 @@ public class binarytree {
                     newTreeNode.setParent(addRoot);
                     //Set isRightChild to true
                     newTreeNode.setisRightChild(true);
-                    System.out.println("Added right node with radd for: " + newTreeNode.getName() + " " + newTreeNode.getparent());
+                    //debug statement to see when tree node is added right
+                    //System.out.println("Added right node with radd for: " + newTreeNode.getName() + " " + newTreeNode.getparent());
                 }
                 else{
-                    System.out.println("called rAdd with right node: " + addRoot.getRightNode());
+                    //statement for debug of how many times recursive call was made
+                    //System.out.println("called rAdd with right node: " + addRoot.getRightNode());
                     rAdd(addRoot.getRightNode(), newTreeNode);
                 }
             }
@@ -59,8 +64,12 @@ public class binarytree {
     }
 
     public treenode find(String fName, String lName){
+        //let everyone know what we are trying to find
         System.out.println("Find Tree Value: " + fName + " " + lName);
+        //join the first and last name
         String name = nameCat(fName, lName);
+        //return the treenode that we found - this is used for delete
+        //call recursive find
         return rFind(root, name);
     }
 
@@ -86,7 +95,7 @@ public class binarytree {
             else {
                 //Call rFind with root’s left child and name
                 //Print statement to aid in debug - lets us know how the tree is being searched
-                System.out.println("calling rFind with get left node: " + rFindroot.getLeftNode());
+                //System.out.println("calling rFind with get left node: " + rFindroot.getLeftNode());
                 rFind(rFindroot.getLeftNode(), rname);
             }
         }
@@ -101,18 +110,18 @@ public class binarytree {
             else {
                 //Call rFind with root’s left child and name
                 //Print statement to aid in debug - lets us know how the tree is being searched
-                System.out.println("calling rFind with get right node: " + rFindroot.getRightNode());
+                //System.out.println("calling rFind with get right node: " + rFindroot.getRightNode());
                 rFind(rFindroot.getRightNode(), rname);
             }
         }
         //this is here to keep the IntelliJ IDE happy - it was showing a syntax error for no return
-        return null;
+        //return null;
+        return rFindroot;
     }
 
     public treenode delete(String fName, String lName){
         System.out.println("Delete Name from Tree: " + fName + " " + lName);
         treenode delNode = find(fName, lName);
-        treenode parentNode = delNode.getparent();
         if(delNode == null){
             //nothing found to delete returning null
             System.out.println("Name not found - nothing to delete.");
@@ -123,29 +132,46 @@ public class binarytree {
             //		If isRightChild is true
                 if(delNode.getisRightChild() == true){
                     //			Set node’s parent’s right child to null
-                    parentNode.setRightNode(null);
+                    delNode.getparent().setRightNode(null);
                 }
                 else {
                     //Set node’s parent’s left child to null
-                    parentNode.setLeftNode(null);
+                    delNode.getparent().setLeftNode(null);
                 }
         }
         //Check for case two (the node has a right child)
         else if(delNode.getRightNode() != null && delNode.getLeftNode() == null){
             //Set node’s parent’s right child to node’s right child
-            parentNode.setRightNode(delNode.getRightNode());
+            delNode.getparent().setRightNode(delNode.getRightNode());
             //Set node’s right child’s parent to node’s parent
-            delNode.getRightNode().setParent(parentNode);
+            delNode.getRightNode().setParent(delNode.getparent());
         }
         //Check for case three (the node has a left child)
         else if(delNode.getLeftNode() != null && delNode.getRightNode() == null){
             //Set node’s parent’s left child to node’s left child
-            parentNode.setLeftNode(delNode.getLeftNode());
+            delNode.getparent().setLeftNode(delNode.getLeftNode());
             //Set node’s left child’s parent to node’s parent
-            delNode.getLeftNode().setParent(parentNode);
+            delNode.getLeftNode().setParent(delNode.getparent());
         }
         //check to see if the node has both left and right children
-        else if(delNode.getRightNode() != null && delNode.getLeftNode() != null){
+        else if((delNode.getRightNode() != null) && (delNode.getLeftNode() != null)){
+            //	Call your utility method with the node’s right child as a parameter.
+            // So you’ll have the smallest node in the node’s right subtree.
+            // This node is guaranteed to be greater than any node in the node’s left subtree.
+            //	Replace the data of the node you want to delete with the data of the node you found in the subtree
+            //	Delete the node you found in the subtree (using the algorithm in case 1)
+
+            delNode = util(delNode.getRightNode());
+
+            if(delNode.getisRightChild() == true){
+                //			Set node’s parent’s right child to null
+                delNode.getparent().setRightNode(null);
+            }
+            else {
+                //Set node’s parent’s left child to null
+                delNode.getparent().setLeftNode(null);
+            }
+
 
         }
         //this is here to keep the IDE happy - should never hit this
@@ -153,10 +179,28 @@ public class binarytree {
     }
 
     public treenode util (treenode utilTreenode){
-        //	a. Create a little utility method that takes a TreeNode and returns the leftmost child
+        //Create a little utility method that takes a TreeNode and returns the leftmost child
         //It will simply be a while loop that goes down the left child repeatedly until the left child is null.
-        // It returns that last left child.
-        //	ii. This node has the characteristic of being the smallest node of the tree searched
+        //It returns that last left child.
+        //This node has the characteristic of being the smallest node of the tree searched
+        //create a variable to exit the loop
+        boolean exitLoop = false;
+        //create a variable to return
+        treenode retTreenode = utilTreenode;
+        //while the value has a left child repeat
+        while(exitLoop == false){
+            //update the return variable
+            retTreenode = utilTreenode;
+            //iterate to the next child
+            utilTreenode = utilTreenode.getLeftNode();
+            //check to see if the child is null - if it is set the exit to true
+            if(utilTreenode.getLeftNode() == null){
+                 exitLoop = true;
+             }
+
+        }
+        //return the last node
+        return retTreenode;
     }
 
     public String nameCat(String fName, String lName){

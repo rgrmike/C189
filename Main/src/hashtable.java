@@ -24,19 +24,24 @@ public class hashtable{
         System.out.println("Trying to find = " + name);
         int hashNum = Math.abs(name.toUpperCase().hashCode()%13);
         node counter = hashTbl[hashNum];
-        //check for a null value so we dont throw an exception on the last node
+        boolean foundIt = false;
+        //check for a null value so we don't throw an exception on the last node
         //check all the nodes for the hash
         while (counter != null){
             //make sure there is a value to return
             if (counter.getName().equals(name)){
-                String rtnEmail = hashTbl[hashNum].getEmail();
-                String rtnPhone = hashTbl[hashNum].getPhone();
-                //print to the screen that we actually found the value we were looking for
-                //the cohort said to set this to void so we don't return anything - this just shows that we found what we wanted
-                System.out.println("Found: " + name + " " + rtnEmail + " " + rtnPhone);
+                foundIt = true;
             }
             counter = counter.getNextNode();
         }
+        if(foundIt == false){
+            System.out.println(fName + " " + lName + " Can't Be found.");
+        }
+        else if(foundIt == true){
+            //print to the screen that we actually found the value we were looking for
+            System.out.println("Found: " + name);
+        }
+
     }
     //delete the node based on first and last name parameters
     public void delete(String fName, String lName) {
