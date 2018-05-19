@@ -1,6 +1,6 @@
 package Main.src;
 /**
- * Created by mian on 4/22/2018.
+ * MA Created by mian on 4/22/2018.
  */
 public class node{
     /* MA This class will represent one node in the hash table */

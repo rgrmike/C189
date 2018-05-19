@@ -1,9 +1,9 @@
 package Main.src;
 /**
- * Created by Mike Anderson on 4/22/2018.
+ * MA Created by Mike Anderson on 4/22/2018.
  */
 public class main {
-    /* This class will be the main method */
+    /*MA This class will be the main method */
     public static void main(String[] args){
         System.out.println("Testing Hash Table:");
         hashtable testHash = new hashtable();
